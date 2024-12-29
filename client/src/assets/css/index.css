@@ -1,0 +1,31 @@
+@import url(./variables.css);
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color);
+  display: grid;
+  place-items: center;
+  min-width: 100dvw;
+  min-height: 100dvh;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--bg);
+  background-image: var(--svg);
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-weight: unset;
+}
+button, a, input {
+  all: unset;
+}
