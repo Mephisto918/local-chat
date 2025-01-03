@@ -1,12 +1,11 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import styled from 'styled-components'
 import { useState, useRef, useEffect } from 'react';
 import {Data} from '../App';
 const SendMessage = ({onSend}) => {
   const passUsername = useContext(Data);
-  const [username, setUsername] = useState('<empty>');
+  const [username, setUsername] = useState('<empty>')
   const [message, setMessage] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -17,13 +16,11 @@ const SendMessage = ({onSend}) => {
 
   function messageChange(e){
     setMessage(e.target.value);
-    setIsTyping(true);
   }
 
   function handleMessage(e){
     e.preventDefault(); // Prevent line break
     sendMessage("");
-    setIsTyping(false);
     inputRef.current.style.height = `2.2rem`; // Set height based on scrollHeight
   }
 
@@ -39,7 +36,6 @@ const SendMessage = ({onSend}) => {
     });
     console.log(passUsername);
     setMessage("");
-    setIsTyping(false);
   }
   const handleResize = (e) => {
     const number = e.target.scrollHeight;

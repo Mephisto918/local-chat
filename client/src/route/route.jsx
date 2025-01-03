@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom' 
 import HomePage from "../views/HomePage";
 import AboutPage from "../views/About";

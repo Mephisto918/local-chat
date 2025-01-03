@@ -1,41 +1,43 @@
-import React, { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import MessageContainer from '../components/MessageContainer'
 import SendMessage from '../components/SendMessage'
-import Hooks from '../utils/Hooks'
-import axios from 'axios'
+import { io } from 'socket.io-client'
+
 
 const MainChat = () => {
-  const { Get, Post } = Hooks().useAxios();
-  const api = 'http://localhost:3000/message';
+  const api = '192.168.254.144:8000';
+  // const api = 'http://localhost:8000';
+  const socket = io(api);
 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
-  const { postData } = Post();
 
-  useEffect(()=>{
+  useEffect(()=>{ // init
     async function iffe(){
-      const response = await axios.get(api);
-      setMessages(response.data);
-      console.log(response.data);
+      socket.on('connect', ()=>{
+        console.log(socket.id);
+      });
     }
     iffe();
   },[]);
 
   useEffect(()=>{
-    async function iffe(){
-      const response = await axios.get(api);
-      setMessages(response.data);
-      console.log(response.data);
-    }
-    iffe();
+    // async function iffe(){
+      
+    // }
+    // iffe();
+    socket.on('convoArray',(array)=>{
+      setMessages(array);
+      console.log(array);
+    });
   },[message]);
 
 
   function handleSendMessage(message) {
     setMessage(message);
-    postData(api, message);
+    socket.emit('user_message', message);
   }
 
   return (

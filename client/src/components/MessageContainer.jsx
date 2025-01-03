@@ -1,9 +1,8 @@
-import React, {useContext} from 'react'
+import {useContext} from 'react'
 import styled from 'styled-components'
 import {Data} from '../App';
 
 const MessageContainer = ({message, user}) => {
-  // const name = 'gbol';
   const name = useContext(Data);
 
   return (

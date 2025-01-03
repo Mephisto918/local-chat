@@ -1,7 +1,7 @@
-import { useEffect, useState, createContext } from 'react'
 import styled from 'styled-components'
 import InputeUsernameModal from './components/InputeUsernameModal';
 import MainChat from './views/MainChat';
+import { createContext, useState } from 'react';
 
 export const Data = createContext();
 function App() {
