@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import {Data} from '../App';
 const SendMessage = ({onSend}) => {
   const passUsername = useContext(Data);
-  const [username, setUsername] = useState('<empty>')
+  // const [username, setUsername] = useState('<empty>')
   const [message, setMessage] = useState('');
   const inputRef = useRef(null);
 
@@ -26,7 +26,7 @@ const SendMessage = ({onSend}) => {
 
   function sendMessage(){
     if (!message.trim()) return;
-    setUsername(passUsername);
+    // setUsername(passUsername);
     onSend({
       id: Date.now(),
       name:  passUsername,
@@ -59,7 +59,7 @@ const SendMessage = ({onSend}) => {
 }
 
 const Footer = styled.footer`
-    position: absolute;
+    position: relative;
     bottom: 0.5rem;
     left: 0;
     background-color: red;
@@ -70,7 +70,8 @@ const Footer = styled.footer`
     display: flex;
     justify-content: start;
     gap: 1rem;
-    padding: 0.3rem 0.6rem;
+    padding: 0.8rem 0.6rem;
+    margin-top: auto;
 
     >*:first-child{
       background-color: green;

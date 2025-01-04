@@ -4,6 +4,7 @@ const InputeUsernameModal = ({sendUsername}) => {
   const [username, setUsername] = useState('');
   const [hasVal, setVal] = useState(false);
 
+
   function handleClick(e){
     e.preventDefault();
     setVal(true);

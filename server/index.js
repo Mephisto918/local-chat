@@ -20,33 +20,32 @@ app.use(bodyParser.urlencoded({ limited: '50mb', extended: true }));
 const convoArray = [];
 
 io.on('connection', (socket) => {
-    // console.log('a user connected 1');
-
+    socket.emit('convoArray', convoArray);
     socket.on('user_message', (payload) => {
         const data = payload;
         convoArray.push(data);
         convoArray.forEach(ar=>{
-            console.log(ar.message);
+            console.log('name: ' + ar.name, ar.message);
         })
-        socket.broadcast.emit('convoArray', convoArray);
+        io.emit('convoArray', convoArray);
+        // socket.broadcast.emit('convoArray', convoArray);
     });
 
-    // socket.emit('convoArray', JSON.parse(convoArray));
-    // {
-    //     "content":{
-    //         "id":1735905930560,
-    //         "name":"red",
-    //         "message":"asdd",
-    //         "time":"8:05:30 PM",
-    //         "sender":"user"
-    //     }
-    // }
-
+    
     socket.on('disconnect', () => {
         console.log('user disconnected 2');
     });
 })
 
+// {
+//     "content":{
+//         "id":1735905930560,
+//         "name":"red",
+//         "message":"asdd",
+//         "time":"8:05:30 PM",
+//         "sender":"user"
+//     }
+// }
 
 server.listen(8000,()=>{
     console.log("8000 up!");

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 
 import MessageContainer from '../components/MessageContainer'
@@ -13,26 +13,23 @@ const MainChat = () => {
 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
+  const latestMessage = useRef(null);
 
-  useEffect(()=>{ // init
-    async function iffe(){
-      socket.on('connect', ()=>{
-        console.log(socket.id);
-      });
-    }
-    iffe();
-  },[]);
-
-  useEffect(()=>{
-    // async function iffe(){
-      
-    // }
-    // iffe();
-    socket.on('convoArray',(array)=>{
+  useEffect(() => {
+    socket.on('convoArray', (array) => {
       setMessages(array);
-      console.log(array);
     });
-  },[message]);
+    
+    console.log('run');
+    return () => socket.off('convoArray');
+  }, []);
+
+  useEffect(() => {
+    // Scroll to the latest message whenever messages update
+    setTimeout(() => {
+      latestMessage.current?.scrollIntoView({ behavior: 'smooth' });
+   }, 50);
+  }, [messages]); // Runs whenever `messages` changes
 
 
   function handleSendMessage(message) {
@@ -53,6 +50,7 @@ const MainChat = () => {
             />
           )
         })}
+        <div ref={latestMessage}></div>
       </div>
       <SendMessage onSend={handleSendMessage}></SendMessage>
     </Messenger>  
@@ -67,6 +65,9 @@ const Messenger = styled.section`
   height: 100dvh;
   overflow: hidden;
 
+  display: flex;
+  flex-direction: column;
+
   >div{
     overflow-y: scroll;
     padding: 1rem;
@@ -75,7 +76,7 @@ const Messenger = styled.section`
     flex-direction: column;
     gap: 0.5rem;
 
-    height: 100dvh;
+    flex-grow: 1;
   }
   
 

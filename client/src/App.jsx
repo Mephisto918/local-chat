@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import InputeUsernameModal from './components/InputeUsernameModal';
 import MainChat from './views/MainChat';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 export const Data = createContext();
 function App() {
@@ -10,6 +10,9 @@ function App() {
     setUsername(username);
   }
 
+  useEffect(()=>{
+
+  },[]);
   return (
     <>
       <Data.Provider value={username}>

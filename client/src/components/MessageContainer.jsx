@@ -39,7 +39,8 @@ const MessageCon = styled.div`
     }
   }
   >*:last-child{
-    width: 70%;
+    max-width: 70%;
+    min-width: 0%;
 
     display: flex;
     flex-direction: column;
