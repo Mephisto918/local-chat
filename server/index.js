@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
+import { getLocalIP, updateEnvFile } from './src/utils/changeIpScript.js';
 
 const app = express();
 const server = http.createServer(app);
@@ -16,6 +17,10 @@ const io = new Server(server, {
 app.use(cors());
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limited: '50mb', extended: true }));
+
+const PORT = 8000;
+const ip = getLocalIP();
+updateEnvFile(ip, PORT);
 
 const convoArray = [];
 
@@ -47,7 +52,7 @@ io.on('connection', (socket) => {
 //     }
 // }
 
-server.listen(8000,()=>{
+server.listen(PORT, ()=>{
     console.log("8000 up!");
 });
 

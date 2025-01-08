@@ -6,8 +6,9 @@ import { createContext, useEffect, useState } from 'react';
 export const Data = createContext();
 function App() {
   const [username, setUsername] = useState('');
-
   useEffect(()=>{
+    const api = process.env.MACHINE_API_URL;
+    localStorage.setItem('api', api);
     if(localStorage.getItem('username') != null) return setUsername(localStorage.getItem('username'));
   },[]);
 

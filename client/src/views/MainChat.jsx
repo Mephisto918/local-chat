@@ -6,25 +6,38 @@ import SendMessage from '../components/SendMessage'
 import ConvoNav from '../components/ConvoNav'
 import { io } from 'socket.io-client'
 
-
 const MainChat = () => {
-  const api = '192.168.254.144:8000';
   // const api = 'http://localhost:8000';
-  const socket = io(api);
-
+  const [socket, setSocket] = useState(null);
+  const [api, setApi] = useState(null);
+  
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const latestMessage = useRef(null);
+  
+  useEffect(()=>{
+    const api = localStorage.getItem('api');
+    console.log(api);
+    
+    setApi(api);
+    const newSocket = io(api);
+    setSocket(newSocket);
+
+    return ()=> newSocket.disconnect();
+  }, [api]);
 
   useEffect(() => {
-    socket.on('convoArray', (array) => {
-      setMessages(array);
-    });
+
+    if(socket){
+      socket.on('convoArray', (array) => {
+        setMessages(array);
+      });
+    }
     
     console.log('run');
-    return () => socket.off('convoArray');
-  }, []);
-
+    // return () => socket.off('convoArray'); //yawa wako kasabot
+  }, [socket]);
+  
   useEffect(() => {
     // Scroll to the latest message whenever messages update
     setTimeout(() => {
@@ -58,7 +71,6 @@ const MainChat = () => {
     </Messenger>  
   )
 }
-// so I am tryng json server first, so i have sucessfully retrieve my dummy data, but now I am contemplating, do I put
 
 const Messenger = styled.section`
   position: relative;
