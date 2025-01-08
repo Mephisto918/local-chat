@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import MessageContainer from '../components/MessageContainer'
 import SendMessage from '../components/SendMessage'
+import ConvoNav from '../components/ConvoNav'
 import { io } from 'socket.io-client'
 
 
@@ -39,6 +40,7 @@ const MainChat = () => {
 
   return (
     <Messenger> 
+      <ConvoNav></ConvoNav>
       <div >
         {messages && messages.map(message =>{
           return (

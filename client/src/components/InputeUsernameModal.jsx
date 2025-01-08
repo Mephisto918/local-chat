@@ -1,14 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 const InputeUsernameModal = ({sendUsername}) => {
   const [username, setUsername] = useState('');
-  const [hasVal, setVal] = useState(false);
+  const [hasVal, setHasVal] = useState(false);
 
+  useEffect(()=>{
+    if(localStorage.getItem('username') != null) return setHasVal(true);
+  },[]);
 
   function handleClick(e){
     e.preventDefault();
-    setVal(true);
+    localStorage.setItem('username', username);
     sendUsername(username);
+    setHasVal(true);
   }
 
   return (
