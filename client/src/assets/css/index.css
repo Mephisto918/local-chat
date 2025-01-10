@@ -29,3 +29,18 @@ h1,h2,h3,h4,h5,h6{
 button, a, input {
   all: unset;
 }
+
+
+.theme{
+  --theme-background-color: slateblue;
+
+  --theme-bg-dark-hard: color-mix(in srgb, var(--theme-background-color) 50%, black 100%);
+  --theme-bg-dark-soft: color-mix(in srgb, var(--theme-background-color) 70%, black 70%);
+  --theme-bg-neutral:var(--theme-background-color);
+  --theme-bg-light-soft: color-mix(in srgb, var(--theme-background-color) 80%, white 50%);
+  --theme-bg-light-hard: color-mix(in srgb, var(--theme-background-color) 70%, white 100%);
+
+  --theme-fc-dark: color-mix(in srgb, var(--theme-background-color) 50%, black 90%);
+  --theme-fc-light: color-mix(in srgb, var(--theme-background-color) 20%, white 60%);
+}
+

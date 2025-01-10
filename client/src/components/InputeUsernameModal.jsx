@@ -29,8 +29,6 @@ const InputeUsernameModal = ({sendUsername}) => {
 }
 
 const Modal = styled.section`
-  /* display: none; */
-
   background-color: #00800021;
   backdrop-filter: blur(10px);
   position: absolute;
@@ -42,9 +40,9 @@ const Modal = styled.section`
   left: 0;
 
   >div{
-    --bg-color: #196519;
+    --bg-color: var(--theme-bg-dark-soft);
     background-color: var(--bg-color);
-    border: 1px solid color-mix(in srgb, var(--bg-color) 70%, white 70%);
+    border: 1px solid var(--theme-bg-light-soft);
     border-radius: 10px;
     height: auto;
     padding: 1rem;
@@ -75,7 +73,6 @@ const Modal = styled.section`
         padding: 0.3rem 0.6rem;
         --input-bg: color-mix(in srgb, var(--bg-color) 90%, white 30%);
         background-color: color-mix(in srgb, var(--input-bg) 90%, white 30%);
-        border: 1px solid color-mix(in srgb, var(--input-bg) 70%, white 70%);
         border-radius: 6px;
         color: color-mix(in srgb, var(--input-bg) 80%, black 90%);
       }
@@ -83,9 +80,7 @@ const Modal = styled.section`
         --bt-bg: color-mix(in srgb, var(--bg-color) 80%, white 50%);
         margin-top: auto;
         --base-bg: color-mix(in srgb, var(--bt-bg) 80%, black 20%);
-        --base-border: color-mix(in srgb, var(--bt-bg) 80%, white 70%);
         background-color: var(--base-bg);
-        border: 2px solid var(--base-border);
         border-radius: 10px;
         padding: .3rem .6rem;
         

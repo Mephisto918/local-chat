@@ -29,7 +29,9 @@ const MessageCon = styled.div`
     justify-content: start;
     align-items: start;
     >p{
-      border: 1px solid yellow;
+      background-color: var(--theme-bg-neutral);
+      color: var(--theme-fc-light);
+      /* border: 1px solid yellow; */
       border-radius: 50%;
       width: 2rem;
       aspect-ratio: 1/1;
@@ -46,18 +48,21 @@ const MessageCon = styled.div`
     flex-direction: column;
     gap: .2rem;
     >p:first-child{
+      color: var(--theme-fc-light);
       font-size: 8pt;
     }
     >p:last-child{
+      background-color: var(--theme-bg-dark-soft);
+
+      color: var(--theme-fc-light);
       font-size: 10pt;
-      border: 1px solid black;
       padding: 0.2rem 0.4rem;
-      border-radius: 10px;
-      background-color: brown;
+      border-radius: 8px;
       height: auto;
       overflow: scroll;
       overflow-wrap: break-word;
-      word-break: break-all; 
+      word-wrap: break-word;
+      word-break: break-word; 
       white-space: normal; 
     }
   }

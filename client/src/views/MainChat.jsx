@@ -73,8 +73,9 @@ const MainChat = () => {
 }
 
 const Messenger = styled.section`
+  background-color: var(--theme-bg-dark-hard);
+
   position: relative;
-  background-color: green;
   width: 30rem; 
   height: 100dvh;
   overflow: hidden;
@@ -94,10 +95,9 @@ const Messenger = styled.section`
   }
   
 
-  @media only screen and (max-width: 768px) {
-    background-color: blue;
+  @media only screen and (max-width: 480px) {
+    background-color: var(--theme-bg-dark-hard);
     width: 100%;
-
   }
 `;
 
