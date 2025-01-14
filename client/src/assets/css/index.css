@@ -32,7 +32,7 @@ button, a, input {
 
 
 .theme{
-  --theme-background-color: slateblue;
+  --theme-background-color: gray;
 
   --theme-bg-dark-hard: color-mix(in srgb, var(--theme-background-color) 50%, black 100%);
   --theme-bg-dark-soft: color-mix(in srgb, var(--theme-background-color) 70%, black 70%);

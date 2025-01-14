@@ -7,7 +7,6 @@ const SendMessage = ({onSend}) => {
   // const [username, setUsername] = useState('<empty>')
   const [message, setMessage] = useState('');
   const inputRef = useRef(null);
-
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.style.width = `${Math.max(100, message.length * 10)}px`;
