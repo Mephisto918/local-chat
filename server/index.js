@@ -23,17 +23,24 @@ const ip = getLocalIP();
 updateEnvFile(ip, PORT);
 
 const convoArray = [];
+const users = [];
 
 io.on('connection', (socket) => {
+    const user = { id: socket.id, name: socket.name};
+    socket.on('connected', () => { 
+        console.log(user.id);
+        console.log('a user has connected');
+    })
     socket.emit('convoArray', convoArray);
+
+
     socket.on('user_message', (payload) => {
         const data = payload;
         convoArray.push(data);
         convoArray.forEach(ar=>{
-            console.log('name: ' + ar.name, ar.message);
+            console.log(ar.name + ': ' + ar.message);
         })
         io.emit('convoArray', convoArray);
-        // socket.broadcast.emit('convoArray', convoArray);
     });
 
     

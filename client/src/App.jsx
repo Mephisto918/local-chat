@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import InputeUsernameModal from './components/InputeUsernameModal';
 import MainChat from './views/MainChat';
-// import DecisionModal from './components/DecisionModal';
+import DecisionModal from './utils/Modals/DecisionModal';
 import { createContext, useEffect, useState } from 'react';
 
 export const Data = createContext();
@@ -23,8 +23,7 @@ function App() {
   return (
     <>
       <Data.Provider value={username}>
-        <Container className='theme'>
-          {/* <DecisionModal></DecisionModal> */}
+        <Container>
           <InputeUsernameModal sendUsername={sendUsername}></InputeUsernameModal>
           <MainChat ></MainChat>
         </Container>

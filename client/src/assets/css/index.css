@@ -7,6 +7,7 @@
 }
 
 body {
+  position: relative;
   font-family: var(--font-family);
   color: var(--color);
   display: grid;
@@ -23,24 +24,15 @@ body {
   background-image: var(--svg);
 }
 
+#modal-parts{
+  position: absolute;
+  z-index: 100;
+}
+
 h1,h2,h3,h4,h5,h6{
   font-weight: unset;
 }
 button, a, input {
   all: unset;
-}
-
-
-.theme{
-  --theme-background-color: gray;
-
-  --theme-bg-dark-hard: color-mix(in srgb, var(--theme-background-color) 50%, black 100%);
-  --theme-bg-dark-soft: color-mix(in srgb, var(--theme-background-color) 70%, black 70%);
-  --theme-bg-neutral:var(--theme-background-color);
-  --theme-bg-light-soft: color-mix(in srgb, var(--theme-background-color) 80%, white 50%);
-  --theme-bg-light-hard: color-mix(in srgb, var(--theme-background-color) 70%, white 100%);
-
-  --theme-fc-dark: color-mix(in srgb, var(--theme-background-color) 50%, black 90%);
-  --theme-fc-light: color-mix(in srgb, var(--theme-background-color) 20%, white 60%);
 }
 

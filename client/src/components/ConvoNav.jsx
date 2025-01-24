@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext  } from 'react'
 import styled from 'styled-components'
 import { Data } from '../App';
 
+import { showModal } from '../utils/Modals/ModalHandler';
+
 const ConvoNav = () => {
   const passUsername = useContext(Data);
   const [username, setUsername] = useState('');
@@ -14,9 +16,20 @@ const ConvoNav = () => {
     setUsername(passUsername);
   },[passUsername]);
 
-  function handleSignOut(){
-    localStorage.clear();
-    window.location.reload();
+  async function handleSignOut(){
+    const answer = await showModal(
+                                    "Alert",
+                                    "pi pi-exclamation-circle",
+                                    "Are you sure you want to sign out?",
+                                    null,
+                                    "Yes",
+                                    "No"
+                                  )
+
+    if(answer){
+      localStorage.clear();
+      window.location.reload();
+    }
   }
 
   return (
@@ -24,9 +37,12 @@ const ConvoNav = () => {
       <div>
         <h4>{username}</h4>
       </div>
+      <button>
+        <i className="pi pi-users"></i>
+        <p>0</p>
+      </button>
       <button onClick={handleSignOut}>
-        <i className='pi pi-sign-out'>
-        </i>
+        <i className='pi pi-sign-out'></i>
       </button>
       <button>
         <i className='pi pi-user-edit'>
@@ -67,6 +83,16 @@ const Nav = styled.nav`
     align-items: center;
     
     border-radius: var(--border-rad);
+
+    &:nth-child(2){
+      margin-right: auto;
+      display: flex;
+      width: auto;
+      height: auto;
+      aspect-ratio: unset;
+      padding: 0.3rem 0.5rem;
+      gap: 1rem;
+    }
     
     &:hover{
       cursor: pointer;
