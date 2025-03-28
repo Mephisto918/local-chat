@@ -31,8 +31,13 @@ io.on('connection', (socket) => {
         console.log(user.id);
         console.log('a user has connected');
     })
-    socket.emit('convoArray', convoArray);
+    socket.on('user_connect', (payload) => {
+        users.push(payload);
+        io.emit('totalUsers', users);
+        console.log(users);
+    })
 
+    socket.emit('convoArray', convoArray);
 
     socket.on('user_message', (payload) => {
         const data = payload;

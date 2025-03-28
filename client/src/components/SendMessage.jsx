@@ -41,7 +41,6 @@ const SendMessage = ({onSend}) => {
       time: new Date().toLocaleTimeString(),
       sender: "user",
     });
-    console.log(passUsername);
     setMessage("");
   }
   const handleResize = (e) => {
@@ -49,6 +48,7 @@ const SendMessage = ({onSend}) => {
     if(number >= 263) return;
     inputRef.current.style.height = `${number}px`;
   };
+  
   return (
     <Footer>
         <textarea

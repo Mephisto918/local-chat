@@ -1,12 +1,16 @@
 import React, { useEffect, useState, useContext  } from 'react'
 import styled from 'styled-components'
 import { Data } from '../App';
+import { io } from 'socket.io-client';
 
 import { showModal } from '../utils/Modals/ModalHandler';
 
 const ConvoNav = () => {
   const passUsername = useContext(Data);
+  const [socket, setSocket] = useState(null);
+  const [api, setApi] = useState(null);
   const [username, setUsername] = useState('');
+  const [totalUsers, setTotalUsers] = useState([]);
 
   useEffect(()=>{
     if(localStorage.getItem('username') != null) return setUsername(localStorage.getItem('username'));
@@ -32,6 +36,26 @@ const ConvoNav = () => {
     }
   }
 
+  useEffect(()=>{
+    const api = localStorage.getItem('api');
+    
+    setApi(api);
+    const newSocket = io(api);
+    setSocket(newSocket);
+
+    return ()=> newSocket.disconnect();
+  }, [api]);
+
+  useEffect(() => {
+    if(socket){
+      socket.on('totalUsers', (array) => {
+        setTotalUsers(array);
+        console.log(array);
+      });
+    }
+    
+  }, [socket]);
+
   return (
     <Nav>
       <div>
@@ -39,7 +63,7 @@ const ConvoNav = () => {
       </div>
       <button>
         <i className="pi pi-users"></i>
-        <p>0</p>
+        <p>{totalUsers.length}</p>
       </button>
       <button onClick={handleSignOut}>
         <i className='pi pi-sign-out'></i>

@@ -7,7 +7,6 @@ import ConvoNav from '../components/ConvoNav'
 import { io } from 'socket.io-client'
 
 const MainChat = () => {
-  // const api = 'http://localhost:8000';
   const [socket, setSocket] = useState(null);
   const [api, setApi] = useState(null);
   
@@ -17,7 +16,6 @@ const MainChat = () => {
   
   useEffect(()=>{
     const api = localStorage.getItem('api');
-    console.log(api);
     
     setApi(api);
     const newSocket = io(api);
@@ -27,14 +25,12 @@ const MainChat = () => {
   }, [api]);
 
   useEffect(() => {
-
     if(socket){
       socket.on('convoArray', (array) => {
         setMessages(array);
       });
     }
     
-    console.log('run');
     // return () => socket.off('convoArray'); //yawa wako kasabot
   }, [socket]);
   
