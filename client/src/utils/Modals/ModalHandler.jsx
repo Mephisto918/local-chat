@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import DecisionModal from './DecisionModal'
 
 export function showModal(
@@ -10,22 +10,20 @@ export function showModal(
                             messageTrue,
                             messageFalse,
                           ){
- return new Promise ((r)=>{
-
-    function unmount(){
-      ReactDOM.unmountComponentAtNode(document.getElementById('modal-parts'));
-    } 
+ return new Promise ( r => {
+    const root = ReactDOM.createRoot(document.getElementById('modal-parts'));
+    // const { unmount, render } = ReactDOM.createRoot(document.getElementById('modal-parts'));
   
     function handleTrue(){
-      unmount();
+      root.unmount();
       r(true);
     }
     function handleFalse(){
-      unmount();
+      root.unmount();
       r(false);
     }
 
-    ReactDOM.render(
+    root.render(
       <DecisionModal
         message1={message1}
         primeIcon={primeIcon}
@@ -37,7 +35,6 @@ export function showModal(
         onFalse = {handleFalse}
       >
       </DecisionModal>,
-      document.getElementById('modal-parts')
     )
  })
 }

@@ -31,7 +31,6 @@ const MessageCon = styled.div`
     >p{
       background-color: var(--theme-bg-neutral);
       color: var(--theme-fc-light);
-      /* border: 1px solid yellow; */
       border-radius: 50%;
       width: 2rem;
       aspect-ratio: 1/1;
@@ -43,7 +42,7 @@ const MessageCon = styled.div`
   >*:last-child{
     max-width: 70%;
     min-width: 0%;
-
+    
     display: flex;
     flex-direction: column;
     gap: .2rem;
@@ -52,14 +51,16 @@ const MessageCon = styled.div`
       font-size: 8pt;
     }
     >p:last-child{
+      /* border: 1px solid yellow; */
       background-color: var(--theme-bg-dark-soft);
 
       color: var(--theme-fc-light);
       font-size: 10pt;
-      padding: 0.2rem 0.4rem;
-      border-radius: 8px;
+      padding: 0.6rem 0.6rem;
+      border-radius: 15px;
       height: auto;
-      overflow: scroll;
+      overflow: hidden;
+      /* overflow: scroll; */
       overflow-wrap: break-word;
       word-wrap: break-word;
       word-break: break-word; 

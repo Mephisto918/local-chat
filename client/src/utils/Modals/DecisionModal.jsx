@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import ReacDOM from 'react-dom'
+import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
 const DecisionModal = ({
@@ -10,10 +10,11 @@ const DecisionModal = ({
                         messageTrue,
                         onTrue,
                         messageFalse,
-                        onFalse
+                        onFalse,
+                        optionalBg
                       }) => {
-  return ReacDOM.createPortal(
-    <Con>
+  return ReactDOM.createPortal(
+    <Con style={{backgroundColor: optionalBg}}>
       <div>
         <div>
           <h4>{message1} <i className={String(primeIcon)}></i></h4>
@@ -30,7 +31,7 @@ const DecisionModal = ({
         </div>
       </div>
     </Con>,
-    document.getElementById('modal-parts')
+    document.getElementById('modal-parts') || docyment.body
   )
 }
 
@@ -38,13 +39,15 @@ const Con = styled.div`
   background-color: #000000aa;
   --borad: 10px;
 
-  position: absolute;
+  /* position: absolute; */
   height: 100dvh;
   width: 100dvw;
   z-index: 100;
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -50%);
+  /* top: 0; */
+  /* left: 0; */
+  /* transform: translate(-50%, -50%); */
+  position: fixed;
+  inset: 0;
 
   display: flex;
   flex-direction: column;
